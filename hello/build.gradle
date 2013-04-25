@@ -1,0 +1,68 @@
+// standard keyword notation
+task hello {
+
+    println "Configuration phase 1"
+
+    description = "Greets user" // show information on "gradle tasks"
+    group = "greetings" // group on "gradle tasks"
+
+    doLast {
+        println "Hello World in Gradle!"
+    }
+}
+
+// shortcut for doLast construct
+hello << {
+    println "Add some work"
+}
+
+// add configure block
+hello {
+    println "Configuration phase 2"
+
+    // add execution
+    doLast {
+        println "Event more work"
+    }
+}
+
+// add dynamic generated actions to hello
+4.times { number ->
+    hello << {
+        println "number: $number"
+    }
+}
+
+// add some task at the beginning
+// method call invocation
+hello.doFirst {
+    println "Gotcha!"
+}
+
+// add another action at the beginning
+// no surprise here
+hello.doFirst {
+    println "Gotcha, again!"
+}
+
+// insert action in between
+hello.actions.add(1, ({ t ->
+    println "In between"
+} as Action))
+
+// create dynamic tasks
+3.times {
+    task "dynamicTask_$it" {
+        println "Configuration phase 3"
+
+        description = "Im a dynamic Task"
+    }
+}
+
+task(altHello) << {
+    println "Alternative hello"
+}
+
+tasks.add(name: 'nextHello') << {
+    println "Next hello"
+}

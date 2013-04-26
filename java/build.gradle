@@ -1,0 +1,37 @@
+apply plugin: 'java'
+
+version = '1.2.3'
+
+// add an action to existing compile task from java plugin
+compileJava << {
+    println "compile Java ended"
+}
+
+// define some repositories
+repositories {
+    // guess what, it's maven
+    mavenCentral()
+
+    // define a local directory as repository
+    flatDir dirs: ['libs']
+}
+
+dependencies {
+
+    // maven repo
+    runtime group: 'com.google.guava', name: 'guava', version: '14.0.1'
+    runtime group: 'com.google.inject', name: 'guice', version: '3.0'
+
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+
+    // from flatDir repo
+    runtime name: 'commons-collections-3.2.1'
+
+    // alternative: local file
+
+    // can be used but does not attach sources
+//    runtime files('libs/commons-collections-3.2.1.jar') // no attached sources
+
+    // doesn't work, don't miss the s
+//    runtime file('libs/commons-collections-3.2.1.jar')
+}

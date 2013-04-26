@@ -1,0 +1,34 @@
+import groovy.util.slurpersupport.GPathResult
+import groovy.xml.XmlUtil
+
+task readme {
+    File f = file('readme.txt')
+
+    inputs.files f
+
+    // need at least a dummy entry
+    outputs.upToDateWhen { true }
+    // outputs.dir "output"
+
+    doLast {
+        // gradle logging
+        logger.lifecycle("${f.absolutePath} has changed")
+    }
+}
+
+task prettyXml {
+
+    File inputXml = file('input.xml')
+    File outputXml = file('output.xml')
+
+    inputs.files inputXml
+    outputs.files outputXml
+
+    doLast {
+
+        outputXml.withOutputStream { outputStream ->
+            GPathResult result = new XmlSlurper().parse(inputXml)
+            XmlUtil.serialize(result, outputStream)
+        }
+    }
+}

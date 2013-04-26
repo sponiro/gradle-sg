@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+task breadthWise
+
+task statistic << {
+    println "${project.name} statistic"
+}
+
+task stat

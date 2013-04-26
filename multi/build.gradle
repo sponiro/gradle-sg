@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'build-dashboard'
+
+// application plugin
+mainClassName = 'lineas.example.Multi'
+
+// java plugin
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+dependencies {
+
+    compile project(':shared')
+
+    runtime project(':math')
+}
+
+task breadthWise
+
+// manual dependsOn
+task statistic(dependsOn: [':shared:statistic', ':math:statistic']) << {
+    println "${project.name} statistic"
+}
+
+// generated dependsOn
+task stat {
+
+    subprojects.each { p ->
+        dependsOn p.absoluteProjectPath('stat')
+    }
+}

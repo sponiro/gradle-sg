@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+task show << {
+
+    println myImportantProperty
+    println oldStyleProperty
+
+    println rootProject.name
+    println rootProject.relativePath(project.file("src/java"))
+}
+
+task breadthWise << {
+}
+
+task statistic << {
+    println "${project.name} statistic"
+}
+
+task stat

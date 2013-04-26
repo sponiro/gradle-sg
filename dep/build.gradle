@@ -1,0 +1,30 @@
+task compile {
+
+    doLast {
+        println "Compiling 1"
+    }
+}
+task compile2 {
+
+    doLast {
+        println "Compiling 2"
+    }
+}
+
+task compile3 {
+
+    doLast {
+        println "Compiling 3"
+    }
+}
+
+task dist1(dependsOn: [compile, compile2])
+
+task dist2 {
+    dependsOn = [compile, compile2]
+}
+
+task dist3 {
+    dependsOn compile, compile2
+}
+

@@ -1,0 +1,24 @@
+// gradle -Pskippy="skippy command line property with -P" cmd
+// gradle -Dorg.gradle.project.skippy="skippy command line property with -D" cmd
+task cmd << {
+
+    println skippy
+}
+
+task env << {
+
+    println System.getenv('JAVA_HOME')
+}
+
+// set ORG_GRADLE_PROJECT_myproperty=This is my property
+task envPrefix << {
+
+    println myproperty
+}
+
+// gradle fromFile
+// gradle fromFile -PmyGradleProperty="Anderer Wert"
+task fromFile << {
+
+    println myGradleProperty
+}

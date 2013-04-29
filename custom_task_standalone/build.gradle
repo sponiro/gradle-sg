@@ -1,0 +1,11 @@
+buildscript {
+
+    dependencies {
+		// classpath project(':becool') // this is madness, does not work
+        classpath files('libs/becool.jar')
+    }
+}
+
+task cool(type: de.lineas.CoolTask) {
+
+}

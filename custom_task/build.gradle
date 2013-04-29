@@ -1,0 +1,20 @@
+task cool(type: CoolTask)
+
+class CoolTask extends DefaultTask {
+
+    CoolTask() {
+        doLast {
+              println "Constructor init"
+        }
+    }
+
+    @TaskAction
+    def beCool() {
+        println "I am very cool"
+    }
+
+    @TaskAction
+    def moreCoolness() {
+        println "Lots of coolness"
+    }
+}

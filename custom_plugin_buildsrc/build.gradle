@@ -1,0 +1,8 @@
+//apply plugin: 'karate'
+apply plugin: de.lineas.KaratePlugin
+
+karate {
+    smartQuote = "I'll be back!"
+}
+
+karate.smartQuote = "bla"

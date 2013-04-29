@@ -26,5 +26,6 @@ task dist2 {
 
 task dist3 {
     dependsOn compile, compile2
+    dependsOn compile3
 }
 

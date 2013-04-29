@@ -22,3 +22,9 @@ task fromFile << {
 
     println myGradleProperty
 }
+
+// old and new notation to extend a task with properties
+task localProperty << {
+    oldStyleProperty = 'do not do this anymore'
+    ext.myImportantProperty = 'katsching'
+}

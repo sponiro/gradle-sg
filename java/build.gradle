@@ -1,5 +1,8 @@
 apply plugin: 'java'
 
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
+
+//version '1.2.3'
 version = '1.2.3'
 
 // add an action to existing compile task from java plugin
@@ -12,8 +15,22 @@ repositories {
     // guess what, it's maven
     mavenCentral()
 
+    maven {
+        name "google repository"
+        url "http://google-maven-repository.googlecode.com/svn/repository/"
+    }
+
     // define a local directory as repository
     flatDir dirs: ['libs']
+}
+
+task listRepos << {
+    repositories.each {
+        println it.name
+        if (it instanceof MavenArtifactRepository) {
+            println it.url
+        }
+    }
 }
 
 dependencies {

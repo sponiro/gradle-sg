@@ -1,0 +1,21 @@
+task cleanTempDirectory {
+	File tmp = file('temp')
+
+	onlyIf { 	
+		tmp.exists()
+	}
+	
+	doLast {
+		tmp.delete()
+	}
+}
+
+task encryptFile << {
+	
+	throw new StopExecutionException()	
+}
+
+encryptFile << {
+	
+	println "You will never see this message"
+}

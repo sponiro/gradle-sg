@@ -18,13 +18,22 @@ task envPrefix << {
 
 // gradle fromFile
 // gradle fromFile -PmyGradleProperty="Anderer Wert"
+// see gradle.properties
 task fromFile << {
 
     println myGradleProperty
 }
 
 // old and new notation to extend a task with properties
-task localProperty << {
-    oldStyleProperty = 'do not do this anymore'
-    ext.myImportantProperty = 'katsching'
+task setProp << {
+    oldStyleProperty = 'do not do this anymore' // results in warning
+
+    project.ext.myImportantProperty = 'katsching' // project property
+    ext.taskLocal = 'my local property' // task local property
+    println taskLocal
+}
+
+task writeProp(dependsOn: setProp) << {
+    println myImportantProperty
+    // println taskLocal // not defined here
 }

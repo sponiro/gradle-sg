@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+gradle.taskGraph.whenReady {
+
+    println gradle.taskGraph.allTasks.collect{ it.name }.join(', ')
+    println "Ready"
+}
+
+gradle.taskGraph.addTaskExecutionListener(
+        new TaskExecutionListener() {
+
+            @Override
+            void beforeExecute(Task task) {
+                println "before ${task.name}"
+            }
+
+            @Override
+            void afterExecute(Task task, TaskState taskState) {
+                println "after ${task.name}"
+            }
+        })

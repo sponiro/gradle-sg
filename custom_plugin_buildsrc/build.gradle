@@ -5,4 +5,4 @@ karate {
     smartQuote = "I'll be back!"
 }
 
-karate.smartQuote = "bla"
+karate.smartQuote = "Wax on... wax off. Wax on... wax off."

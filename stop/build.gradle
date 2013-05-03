@@ -11,7 +11,18 @@ task cleanTempDirectory {
 }
 
 task encryptFile << {
-	
+
+    println "first Action"
+
+    throw new StopActionException()
+
+    println "will not be printed"
+}
+
+encryptFile << {
+
+    println "second Action"
+
 	throw new StopExecutionException()	
 }
 

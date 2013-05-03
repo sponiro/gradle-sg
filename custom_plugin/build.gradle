@@ -7,17 +7,24 @@ class KaratePlugin implements Plugin<Project> {
 
         project.extensions.create("karate", KaratePluginExtension)
 
-        // add a simple task
+        // add a simple task to project
         project.task('karate') << {
             println "${project.karate.smartQuote}"
+            println "${project.karate.deepThought.thought}"
         }
     }
 }
 
 class KaratePluginExtension {
     String smartQuote = "Miyagi: We make sacred pact. I promise teach karate to you, you promise learn. I say, you do, no questions."
+    DeepThought deepThought = new DeepThought()
+}
+
+class DeepThought {
+    Long thought = 42
 }
 
 karate {
     smartQuote = "I'll be back!"
+    deepThought.thought = 4815162342
 }

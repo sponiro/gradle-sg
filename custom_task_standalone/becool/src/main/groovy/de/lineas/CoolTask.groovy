@@ -5,19 +5,36 @@ import org.gradle.api.tasks.TaskAction
 
 class CoolTask extends DefaultTask {
 
+    Integer repeatMessage = 3
+
+    void setRepeatMessage(Integer repeatCount) {
+        if (repeatCount == null) {
+            repeatMessage = 1
+        } else {
+            repeatMessage = repeatCount
+        }
+    }
+
     CoolTask() {
         doLast {
-            println "Constructor init"
+            repeatMessage.times {
+                println "Constructor init"
+            }
         }
     }
 
     @TaskAction
     def beCool() {
-        println "I am very cool"
+
+        repeatMessage.times {
+            println "I am very cool"
+        }
     }
 
     @TaskAction
     def moreCoolness() {
-        println "Lots of coolness"
+        repeatMessage.times {
+            println "Lots of coolness"
+        }
     }
 }

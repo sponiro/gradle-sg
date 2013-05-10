@@ -46,9 +46,10 @@ hello.doFirst {
 }
 
 // insert action in between
-hello.actions.add(1, ({ t ->
-    println "In between"
-} as Action))
+// does work in gradle 1.5 but not 1.6
+//hello.actions.add(1, ({ t ->
+//    println "In between"
+//} as Action))
 
 // create dynamic tasks
 3.times {
@@ -63,6 +64,7 @@ task(altHello) << {
     println "Alternative hello"
 }
 
-tasks.add(name: 'nextHello') << {
+//tasks.add(name: 'nextHello') << {
+tasks.create(name: 'nextHello') << {
     println "Next hello"
 }

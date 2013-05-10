@@ -1,6 +1,10 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
+
+// application plugin
+mainClassName = 'lineas.Main'
 
 //version '1.2.3'
 version = '1.2.3'

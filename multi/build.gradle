@@ -1,6 +1,5 @@
 apply plugin: 'java'
 apply plugin: 'application'
-apply plugin: 'build-dashboard'
 
 // application plugin
 mainClassName = 'lineas.example.Multi'

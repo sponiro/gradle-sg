@@ -1,0 +1,20 @@
+task doc(type: Tar) {
+    baseName = 'documentation'
+    destinationDir = file('archives')
+    from 'doc'
+}
+
+task docZip(type: Tar) {
+    baseName = 'documentation'
+    destinationDir = file('archives')
+    from 'doc'
+    compression = Compression.GZIP
+}
+
+task selfTar(type: Tar) {
+    baseName = 'self'
+    destinationDir = file('archives')
+    compression = Compression.GZIP
+    from '.'
+    exclude 'build', '.gradle', '.idea', '*.tar', '*.tgz', 'archives'
+}

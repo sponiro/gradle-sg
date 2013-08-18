@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
+
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 // application plugin
@@ -57,4 +58,11 @@ dependencies {
 
     // doesn't work, don't miss the s
 //    runtime file('libs/commons-collections-3.2.1.jar')
+}
+
+task mainExec(dependsOn: compileJava) << {
+    javaexec {
+        main "lineas.Main"
+        classpath sourceSets.main.output.classesDir
+    }
 }

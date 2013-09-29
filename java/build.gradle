@@ -1,7 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 
 // application plugin
@@ -41,7 +40,10 @@ task listRepos << {
 dependencies {
 
     // maven repo
-    runtime group: 'com.google.guava', name: 'guava', version: '14.0.1'
+    // runtime dependencies are not available in ide
+    // runtime is most usefull for jdbc drivers and such
+//    runtime group: 'com.google.guava', name: 'guava', version: '14.0.1'
+    compile group: 'com.google.guava', name: 'guava', version: '14.0.1'
     runtime group: 'com.google.inject', name: 'guice', version: '3.0'
 
     compile 'com.google.protobuf:protobuf-java:2.2.0'

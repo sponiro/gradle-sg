@@ -11,20 +11,19 @@ targetCompatibility = '1.7'
 dependencies {
 
     compile project(':shared')
-
     runtime project(':math')
 }
 
+// standard tasks are executed breadth wise
 task breadthWise
 
-// manual dependsOn
+// manually generated dependsOn
 task statistic(dependsOn: [':shared:statistic', ':math:statistic']) << {
     println "${project.name} statistic"
 }
 
-// generated dependsOn
+// dynamically generated dependsOn
 task stat {
-
     subprojects.each { p ->
         dependsOn p.absoluteProjectPath('stat')
     }

@@ -9,8 +9,7 @@ task show << {
     println rootProject.relativePath(project.file("src/java"))
 }
 
-task breadthWise << {
-}
+task breadthWise
 
 task statistic << {
     println "${project.name} statistic"

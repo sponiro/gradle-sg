@@ -1,32 +1,22 @@
-// gradle -Pskippy="skippy command line property with -P" cmd
-// gradle -Dorg.gradle.project.skippy="skippy command line property with -D" cmd
-task cmd << {
-
-    println skippy
-}
-
-task env << {
-
-    println System.getenv('JAVA_HOME')
-}
-
-// set ORG_GRADLE_PROJECT_myproperty=This is my property
-task envPrefix << {
-
-    println myproperty
-}
-
-// gradle fromFile
-// gradle fromFile -PmyGradleProperty="Anderer Wert"
-// see gradle.properties
-task fromFile << {
-
-    println myGradleProperty
+// from gradle.properties:
+// gradle proppy
+//
+// with -P:
+// gradle -PmyProperty="command line property with -P" proppy
+//
+// with -D
+// gradle -Dorg.gradle.project.myProperty="command line property with -D" proppy
+//
+// with environment property:
+// set ORG_GRADLE_PROJECT_myProperty=This is my property
+// gradle proppy
+task proppy << {
+    println myProperty
 }
 
 // old and new notation to extend a task with properties
 task setProp << {
-    oldStyleProperty = 'do not do this anymore' // results in warning
+    // oldStyleProperty = 'do not do this anymore' // results in warning
 
     project.ext.myImportantProperty = 'katsching' // project property
     ext.taskLocal = 'my local property' // task local property
@@ -36,4 +26,8 @@ task setProp << {
 task writeProp(dependsOn: setProp) << {
     println myImportantProperty
     // println taskLocal // not defined here
+}
+
+task env << {
+    println System.getenv('JAVA_HOME')
 }

@@ -14,6 +14,7 @@ task encryptFile << {
 
     println "first Action"
 
+    //  stop its own execution and to start execution of the task's next action
     throw new StopActionException()
 
     println "will not be printed"
@@ -23,6 +24,7 @@ encryptFile << {
 
     println "second Action"
 
+    // stop execution of the current task
 	throw new StopExecutionException()	
 }
 

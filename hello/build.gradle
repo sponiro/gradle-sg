@@ -2,7 +2,6 @@
 task hello {
 
     println "Configuration phase 1"
-
     description = "Greets user" // show information on "gradle tasks"
     group = "greetings" // group on "gradle tasks"
 
@@ -13,23 +12,23 @@ task hello {
 
 // shortcut for doLast construct
 hello << {
-    println "Add some work"
+    println "Added action with hello <<"
 }
 
+// hello is defined now
 // add configure block
 hello {
     println "Configuration phase 2"
 
-    // add execution
     doLast {
-        println "Event more work"
+        println "Even more work"
     }
 }
 
 // add dynamic generated actions to hello
 4.times { number ->
     hello << {
-        println "number: $number"
+        println "added with <<: $number"
     }
 }
 
@@ -45,17 +44,10 @@ hello.doFirst {
     println "Gotcha, again!"
 }
 
-// insert action in between
-// does work in gradle 1.5 but not 1.6
-//hello.actions.add(1, ({ t ->
-//    println "In between"
-//} as Action))
-
 // create dynamic tasks
 3.times {
     task "dynamicTask_$it" {
-        println "Configuration phase 3"
-
+        println "task $name in Configuration phase 3"
         description = "Im a dynamic Task"
     }
 }
@@ -68,3 +60,10 @@ task(altHello) << {
 tasks.create(name: 'nextHello') << {
     println "Next hello"
 }
+
+// insert action in between
+// does work in gradle 1.5 but not 1.6, 1.7 or 1.8
+// fixed in 1.9
+//hello.actions.add(1, ({ t ->
+//    println "In between"
+//} as Action))

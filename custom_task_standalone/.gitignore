@@ -1,7 +1,6 @@
+.idea/
+*.iml
 .gradle/
 build
 libs
-
-.idea/
-*.iml
-atlassian-ide-plugin.xml
+repo

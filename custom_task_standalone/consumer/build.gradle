@@ -1,0 +1,16 @@
+buildscript {
+
+    repositories {
+        maven {
+            url uri('../repo')
+        }
+    }
+
+    dependencies {
+        classpath group: 'de.lineas.gradle', name: 'cool', version: '1.0'
+    }
+}
+
+task cool(type: de.lineas.CoolTask) {
+    repeatMessage = 2
+}

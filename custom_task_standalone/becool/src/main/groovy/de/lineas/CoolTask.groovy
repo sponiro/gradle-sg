@@ -17,24 +17,14 @@ class CoolTask extends DefaultTask {
 
     CoolTask() {
         doLast {
-            repeatMessage.times {
-                println "Constructor init"
-            }
+            println "Constructor init"
         }
     }
 
     @TaskAction
     def beCool() {
-
         repeatMessage.times {
             println "I am very cool"
-        }
-    }
-
-    @TaskAction
-    def moreCoolness() {
-        repeatMessage.times {
-            println "Lots of coolness"
         }
     }
 }

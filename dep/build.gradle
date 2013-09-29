@@ -1,4 +1,4 @@
-task compile {
+task compile1 {
 
     doLast {
         println "Compiling 1"
@@ -18,14 +18,18 @@ task compile3 {
     }
 }
 
-task dist1(dependsOn: [compile, compile2])
+task dist1(dependsOn: [compile1, compile2])
 
 task dist2 {
-    dependsOn = [compile, compile2]
+    dependsOn = [compile1, compile2]
 }
 
 task dist3 {
-    dependsOn compile, compile2
+    dependsOn compile1, compile2
     dependsOn compile3
 }
+
+// arguments for task creation are checked for validity since gradle 1.8
+// gradle 1.8 barks at us now
+// task dist4(depends: compile1)
 

@@ -1,15 +1,5 @@
-task cool(type: CoolTask)
-
-task notherCool(type: CoolTask) {
-    repeatMessage = 5
-}
-
-task nullCool(type: CoolTask) {
-    repeatMessage = null
-}
-
-task zeroCool(type: CoolTask) {
-    repeatMessage = 0
+task cool(type: CoolTask) {
+    repeatMessage = 2
 }
 
 class CoolTask extends DefaultTask {
@@ -26,24 +16,21 @@ class CoolTask extends DefaultTask {
 
     CoolTask() {
         doLast {
-            repeatMessage.times {
-                println "Constructor init"
-            }
+            println "Constructor init"
         }
     }
 
     @TaskAction
     def beCool() {
-
         repeatMessage.times {
             println "I am very cool"
         }
     }
 
-    @TaskAction
-    def moreCoolness() {
-        repeatMessage.times {
-            println "Lots of coolness"
-        }
-    }
+//    @TaskAction
+//    def moreCoolness() {
+//        repeatMessage.times {
+//            println "Lots of coolness"
+//        }
+//    }
 }

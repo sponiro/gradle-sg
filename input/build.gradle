@@ -1,21 +1,6 @@
 import groovy.util.slurpersupport.GPathResult
 import groovy.xml.XmlUtil
 
-task readme {
-    File f = file('readme.txt')
-
-    inputs.files f
-
-    // need at least a dummy entry
-    outputs.upToDateWhen { true }
-    // outputs.dir "output"
-
-    doLast {
-        // gradle logging
-        logger.lifecycle("${f.absolutePath} has changed")
-    }
-}
-
 task prettyXml {
 
     File inputXml = file('input.xml')
@@ -32,3 +17,26 @@ task prettyXml {
         }
     }
 }
+
+task readme {
+    File version = file('version')
+    File template = file('readme.txt.template')
+    def readmeInputs = files(version, template)
+
+    File readme = file("readme.txt")
+
+    inputs.files readmeInputs
+    outputs.files readme
+
+    doLast {
+        readme.delete()
+        readme.createNewFile()
+        readme.withWriter { BufferedWriter writer ->
+            writer << version.newInputStream()
+            writer.newLine()
+            writer.newLine()
+            writer << template.newInputStream()
+        }
+    }
+}
+
